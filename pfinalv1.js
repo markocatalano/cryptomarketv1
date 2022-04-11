@@ -1,3 +1,7 @@
+ //Proyecto Final v1
+ //Catalano Marco
+ //C30325
+ 
  //Mensaje Bienvenida
 alert("!!Bienvenido a CrytpoMarket!!\nAqui usted va a poder comprar Cryptomonedas con Pesos Argentinos")
 
