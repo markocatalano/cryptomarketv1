@@ -96,27 +96,34 @@ if (porfolio.some((i)=> i.cryptos1=="BITCOIN")){
     alert("!Felicitaciones!\nUsted compro: "+ cal1 +" btc");
     alert("Felicitaciones\nSus bitcoins ahora le generan un interes anual de 5%"+   
     "\nPor lo tanto, con su compra usted va a generar "+cal2+" BTC")
+    porfolio[cryptosAcomprar.indexOf("BITCOIN")].cantidad=cal1;
 
 
 } 
 if (porfolio.some((i)=> i.cryptos1=="ETHEREUM")){
-    alert("!Felicitaciones!\nUsted compro: "+ calculo1(porfolio[cryptosAcomprar.indexOf("ETHEREUM")].montoAcomprar,cryptos[1].cotizacion) +" ETH");
+    const cal3=calculo1(porfolio[cryptosAcomprar.indexOf("ETHEREUM")].montoAcomprar,cryptos[1].cotizacion);
+    const cal4=calculo3(calculo1(porfolio[cryptosAcomprar.indexOf("ETHEREUM")].montoAcomprar,cryptos[1].cotizacion),cryptos[1].interes);
+    alert("!Felicitaciones!\nUsted compro: "+ cal3 +" ETH");
     alert("Felicitaciones\nSus Ethereum ahora le generan un interes anual de 8%"+
-        "\nPor lo tanto, con su compra usted va a generar "+
-    calculo3(calculo1(porfolio[cryptosAcomprar.indexOf("ETHEREUM")].montoAcomprar,cryptos[1].cotizacion),cryptos[1].interes)+"Ethereum")
+        "\nPor lo tanto, con su compra usted va a generar "+ cal4 +"Ethereum")
+    porfolio[cryptosAcomprar.indexOf("ETHEREUM")].cantidad=cal3;
 
 } 
 if(porfolio.some((i)=> i.cryptos1=="USDT")){
-    alert("!Felicitaciones!\nUsted compro: "+ calculo2(porfolio[cryptosAcomprar.indexOf("USDT")].montoAcomprar,cryptos[2].cotizacion) +" USDT");
+    const cal5=calculo2(porfolio[cryptosAcomprar.indexOf("USDT")].montoAcomprar,cryptos[2].cotizacion);
+    const cal6=calculo4(calculo1(porfolio[cryptosAcomprar.indexOf("USDT")].montoAcomprar,cryptos[2].cotizacion),cryptos[2].interes);
+    alert("!Felicitaciones!\nUsted compro: "+ cal5 +" USDT");
     alert("Felicitaciones\nSus USDT ahora le generan un interes anual de 18%"+
-    "\nPor lo tanto, con su compra usted va a generar "+
-    calculo4(calculo1(porfolio[cryptosAcomprar.indexOf("USDT")].montoAcomprar,cryptos[2].cotizacion),cryptos[2].interes)+" USDT")
+    "\nPor lo tanto, con su compra usted va a generar "+ cal6 +" USDT")
+    porfolio[cryptosAcomprar.indexOf("USDT")].cantidad=cal5;
 }
 if(porfolio.some((i)=> i.cryptos1=="DAI")){
-    alert("!Felicitaciones!\nUsted compro: "+ calculo2(porfolio[cryptosAcomprar.indexOf("DAI")].montoAcomprar,cryptos[3].cotizacion) +" DAI");
+    const cal7= calculo2(porfolio[cryptosAcomprar.indexOf("DAI")].montoAcomprar,cryptos[3].cotizacion);
+    const cal8=calculo4(calculo1(porfolio[cryptosAcomprar.indexOf("DAI")].montoAcomprar,cryptos[3].cotizacion),cryptos[3].interes);
+    alert("!Felicitaciones!\nUsted compro: "+ cal7 +" DAI");
     alert("Felicitaciones\nSus DAI ahora le generan un interes anual de 15%"+
-    "\nPor lo tanto, con su compra usted va a generar "+
-    calculo4(calculo1(porfolio[cryptosAcomprar.indexOf("DAI")].montoAcomprar,cryptos[3].cotizacion),cryptos[3].interes)+" DAI")
+    "\nPor lo tanto, con su compra usted va a generar "+ cal8 +" DAI")
+    porfolio[cryptosAcomprar.indexOf("DAI")].cantidad=cal7;
 }
 
 console.log(porfolio)
@@ -134,7 +141,7 @@ const fragment = document.createDocumentFragment();
 const template = document.querySelector("#template-li").content;
 
 porfolio.forEach((item) => {
-  template.querySelector("span").textContent = `El ${date.toISOString().split('T')[0]} ${item.cryptos1} por $${item.montoAcomprar} pesos Argentinos`;
+  template.querySelector("span").textContent = `El ${date.toISOString().split('T')[0]} ${item.cantidad} ${item.cryptos1} por $${item.montoAcomprar} pesos Argentinos`;
   const clone = template.cloneNode(true);
   // const clone = document.importNode(template, true);
   fragment.appendChild(clone);
