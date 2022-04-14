@@ -2,7 +2,7 @@
  //Catalano Marco
  //C30325
  
- //Mensaje Bienvenida
+/*  //Mensaje Bienvenida
 alert("!!Bienvenido a CrytpoMarket!!\nAqui usted va a poder comprar Cryptomonedas con Pesos Argentinos")
 
  //Creacion de Usuario
@@ -40,7 +40,7 @@ const usuario1= new Usuario(usuarioNombre,usuarioTelefono,usuarioEmail);
 usuario1.saludar();
 
 //Lista para guardar datos del usuario
-const usuarios=[usuario1]  
+const usuarios=[usuario1]  */ 
 
 //Array con parametros de las cryptos
 const cryptos=[{nombre:"BITCOIN", par:"BTCUSDT",cotizacion:2124540,interes: 0.05 },
@@ -91,10 +91,12 @@ const calculo4= (tenencia,intereses) =>((tenencia*intereses).toFixed(2));
 //Calculo de intereses por tenencia de monedas
 
 if (porfolio.some((i)=> i.cryptos1=="BITCOIN")){
-    alert("!Felicitaciones!\nUsted compro: "+ calculo1(porfolio[cryptosAcomprar.indexOf("BITCOIN")].montoAcomprar,cryptos[0].cotizacion) +" btc");
+    const cal1=calculo1(porfolio[cryptosAcomprar.indexOf("BITCOIN")].montoAcomprar,cryptos[0].cotizacion);
+    const cal2=calculo3(calculo1(porfolio[cryptosAcomprar.indexOf("BITCOIN")].montoAcomprar,cryptos[0].cotizacion),cryptos[0].interes);
+    alert("!Felicitaciones!\nUsted compro: "+ cal1 +" btc");
     alert("Felicitaciones\nSus bitcoins ahora le generan un interes anual de 5%"+   
-    "\nPor lo tanto, con su compra usted va a generar "+
-    calculo3(calculo1(porfolio[cryptosAcomprar.indexOf("BITCOIN")].montoAcomprar,cryptos[0].cotizacion),cryptos[0].interes)+" BTC")
+    "\nPor lo tanto, con su compra usted va a generar "+cal2+" BTC")
+
 
 } 
 if (porfolio.some((i)=> i.cryptos1=="ETHEREUM")){
@@ -117,4 +119,25 @@ if(porfolio.some((i)=> i.cryptos1=="DAI")){
     calculo4(calculo1(porfolio[cryptosAcomprar.indexOf("DAI")].montoAcomprar,cryptos[3].cotizacion),cryptos[3].interes)+" DAI")
 }
 
+console.log(porfolio)
 
+//Lista para ver las Compras Realizadas
+
+let date = new Date();
+
+const h3=document.querySelector(".tituloTenencia")
+h3.innerHTML="Transacciones Realizadas"
+
+const lista = document.getElementById("lista-dinamica");
+
+const fragment = document.createDocumentFragment();
+const template = document.querySelector("#template-li").content;
+
+porfolio.forEach((item) => {
+  template.querySelector("span").textContent = `El ${date.toISOString().split('T')[0]} ${item.cryptos1} por $${item.montoAcomprar} pesos Argentinos`;
+  const clone = template.cloneNode(true);
+  // const clone = document.importNode(template, true);
+  fragment.appendChild(clone);
+});
+
+lista.appendChild(fragment);

@@ -3,15 +3,24 @@
 <head>
     <title>CrytpoMarket: Compra y venta de Cryptos </title>
     <link rel="stylesheet" href="style.css">
-    <script src="pfinalv1.js"></script>
 </head>
 <body>
     <header>
         <h1 id="titulo">CryptoMarket</h1>
     </header>
-    <div>
-        <p>Bienvenidos a Crypto Market. La primer pagina donde podes comprar cryptos con pesos</p>
-    </div>
+    <h2>Bienvenidos a Crypto Market. La primer pagina donde podes comprar cryptos con pesos</h2>
+    <hr>
+    <h3 class="tituloTenencia"></h3>
+    <ul id="lista-dinamica">
+
+    </ul>
+        <template id="template-li">
+            <hr>
+            <li class="list">
+                <b>Compró:</b> <span class="text">texto</span>
+            </li>
+            <hr>
+        </template>
     <section>
         <h2>Elegia la Crypto que desea comprar</h2>
         <article class="crypto">
@@ -40,5 +49,8 @@
         <a href="mailto:cryptomarket@gmail.com">Contáctame aquí</a>
         <p>Copyright 2021</p>
     </footer>
+    <script src="pfinalv1.js"></script>
 </body>
 </html>
+
+
