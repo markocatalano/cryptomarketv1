@@ -141,7 +141,7 @@ const fragment = document.createDocumentFragment();
 const template = document.querySelector("#template-li").content;
 
 porfolio.forEach((item) => {
-  template.querySelector("span").textContent = `El ${date.toISOString().split('T')[0]} ${item.cantidad} ${item.cryptos1} por $${item.montoAcomprar} pesos Argentinos`;
+  template.querySelector("span").textContent = `El ${date.toISOString().split('T')[0]} compró ${item.cantidad} ${item.cryptos1} con $${item.montoAcomprar} pesos Argentinos`;
   const clone = template.cloneNode(true);
   // const clone = document.importNode(template, true);
   fragment.appendChild(clone);
