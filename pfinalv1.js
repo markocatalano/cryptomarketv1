@@ -1,8 +1,8 @@
  //Proyecto Final v1
  //Catalano Marco
  //C30325
- 
-/*  //Mensaje Bienvenida
+/*  
+  //Mensaje Bienvenida
 alert("!!Bienvenido a CrytpoMarket!!\nAqui usted va a poder comprar Cryptomonedas con Pesos Argentinos")
 
  //Creacion de Usuario
@@ -35,19 +35,19 @@ class Usuario{
         alert("Bienvenido "+(this.nombre).toUpperCase()+" a CryptoMarket")
     }
 }
-
+ 
 const usuario1= new Usuario(usuarioNombre,usuarioTelefono,usuarioEmail);
 usuario1.saludar();
 
 //Lista para guardar datos del usuario
-const usuarios=[usuario1]  */ 
+const usuarios=[usuario1]  */
 
-//Array con parametros de las cryptos
+ //Array con parametros de las cryptos
 const cryptos=[{nombre:"BITCOIN", par:"BTCUSDT",cotizacion:2124540,interes: 0.05 },
                 {nombre:"ETHEREUM", par:"ETHUSDT",cotizacion:1123540,interes: 0.08},
                 {nombre:"USDT", par:"USDT",cotizacion:210,interes: 0.18},
                 {nombre:"DAI", par:"Dai",cotizacion:210,interes: 0.15}]
-
+/*
 //Eleccion de cryptos a comprar por parte del usuario
 let cryptoElegida;
 const cryptosAcomprar=[]
@@ -126,8 +126,61 @@ if(porfolio.some((i)=> i.cryptos1=="DAI")){
     porfolio[cryptosAcomprar.indexOf("DAI")].cantidad=cal7;
 }
 
-console.log(porfolio)
+console.log(porfolio)  */
 
+
+// Boton de Compra
+
+let buttonBitcoin=document.getElementById("bitcoin")
+
+buttonBitcoin.innerHTML=`<h3>Bitcoin</h3>
+                        <img src="img/btc.png" width="100" />
+                        <p>Cotizacion: $</p>
+                        <button id="BotonBtc">Comprar</button>`;
+
+                        
+BotonBtc.addEventListener("click",(event)=>{
+    event.stopPropagation()
+    funcionClick()
+    
+    
+})
+
+let calculo4=cryptos[0].cotizacion
+
+let formulario = document.createElement("form");
+formulario.id="formBtc"
+
+let funcionClick=()=>{
+    formulario.innerHTML = `<hr>
+                            <label>Quiero Utilizar pesos Arg($)</label>
+                            <input type="number" id="cantidadPesos">
+                            <input type="submit" value="Aceptar">
+                            <hr>
+                            <label>Para comprar Bitcoins</label>
+                            <input type="number" id="cantidadBtc">
+                            `;
+
+
+    buttonBitcoin.appendChild(formulario) 
+
+    let form = document.getElementById("formBtc");
+    form.addEventListener("focus", function( event ) {
+    event.target.style.background = "lightblue";}, true);
+    form.addEventListener("blur", function( event ) {
+    event.target.style.background = "";}, true);
+
+    document.querySelector("#formBtc").onsubmit=(e)=>{
+        e.preventDefault();
+        let cal5=(document.querySelector("#cantidadPesos").value/calculo4)
+        let cantbtc=document.querySelector("#cantidadBtc").value=cal5;
+        alert(`Usted Va a utilizar:$ ${document.querySelector("#cantidadPesos").value}\n 
+               Para comprar:${cal5.toFixed(7)} BTC`)
+            }
+        
+        }
+
+ 
 //Lista para ver las Compras Realizadas
 
 let date = new Date();
@@ -143,8 +196,10 @@ const template = document.querySelector("#template-li").content;
 porfolio.forEach((item) => {
   template.querySelector("span").textContent = `El ${date.toISOString().split('T')[0]} compró ${item.cantidad} ${item.cryptos1} con $${item.montoAcomprar} pesos Argentinos`;
   const clone = template.cloneNode(true);
-  // const clone = document.importNode(template, true);
   fragment.appendChild(clone);
 });
 
-lista.appendChild(fragment);
+lista.appendChild(fragment); 
+
+ 
+     
